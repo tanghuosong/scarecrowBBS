@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>	
+		<property name="show_sql">true</property>
+		<!-- 配置hibernate 二级缓存 -->
+		<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+		
+		<mapping resource="com/scarecrow/bean/User.hbm.xml"/>
+		<mapping resource="com/scarecrow/bean/Admin.hbm.xml"/>
+		<mapping resource="com/scarecrow/bean/Post.hbm.xml"/>
+		<mapping resource="com/scarecrow/bean/Answer.hbm.xml"/>
+		<mapping resource="com/scarecrow/bean/Category.hbm.xml"/>
+		<mapping resource="com/scarecrow/bean/Notice.hbm.xml"/>
+		<mapping resource="com/scarecrow/bean/UserStatus.hbm.xml"/>
+		<mapping resource="com/scarecrow/bean/CategoryStatus.hbm.xml"/>
+		
+		<class-cache usage="read-write" class="com.scarecrow.bean.Category"/>
+		<class-cache usage="read-write" class="com.scarecrow.bean.CategoryStatus"/>
+		<class-cache usage="read-write" class="com.scarecrow.bean.UserStatus"/>
+	</session-factory>
+</hibernate-configuration>

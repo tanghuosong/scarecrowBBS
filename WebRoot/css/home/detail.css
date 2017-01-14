@@ -1,0 +1,32 @@
+.detail{height:32px;line-height:31px;color:#FFF;text-indent:12px;letter-spacing:2px;background:url(../../image/reg_title_bg.jpg);}
+.detail_container{width:1024px;min-height:800px;background-color:#FCFEFD;}
+.author{width:1024px;}
+.author_info{width:200px;height:400px;float:left;border-right:1px solid #fedcbd;}
+.author_image{width:180px;height:180px;margin:10px;}
+.info_detail{width:160px;height:30px;margin-left:30px;text-align: left;}
+.post_info{width:800px;min-height: 400px;float:right;margin-left:20px;}
+.post_title{margin:10px 0px 0px 20px;font-size:20px;color:red;}
+.post_content{width:760px;line-height: 30px;margin-left:20px;word-spacing: 3px;}
+.post_text{margin-top:10px;}
+.post_text pre{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}
+.post_image{margin-top:20px;}
+.post_image img{max-width:300px;}
+.post_other{float:right;margin-right:30px;margin-top:10px;position: relative;bottom:10px;}
+.post_other span{padding-right:10px;font-size:14px;color:#999d9c;}
+.discuss{width:1024px;height:200px;clear:both;margin-top:10px;border-top:10px solid white;border-bottom:10px solid white;}
+.discuss_content{position: relative;top:25px;}
+.discuss textarea{width:924px;vertical-align: top;}
+.discuss input{width:60px;float:right;margin:20px 30px 0px 0px;}
+.discuss_error{text-align: center;line-height: 200px;}
+.discuss_error img{width:40px;position: relative;bottom:-10px;}
+.discuss_error a{color:red;}
+.answer_info{width:1024px;min-height:100px;margin:20px 0px 10px 0px;border-bottom:5px solid white;overflow: auto;}
+.answer_other{width:200px;height:100px;border-right:1px solid #fedcbd;float:left;}
+.answer_user{width:200px;height:30px;float:right; text-align: center;line-height:30px;}
+.answer_time{float:right;margin:20px 10px 0 0;font-size:14px;color:#999d9c;}
+.answer{width:800px;min-height:80px;float:right;margin-left:10px;line-height: 30px;word-spacing:3px;}
+.answer_content{font-size:15px;}
+#answer_error{font-size:28px;text-align: center; color:#eef;margin:20px 0px 20px 0px;}
+
+
+

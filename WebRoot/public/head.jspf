@@ -1,0 +1,40 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set value="${pageContext.request.contextPath}" var="scarecrow"/>
+
+<title>稻草人论坛</title>
+    
+<link rel="stylesheet" type="text/css" href="${scarecrow}/jquery-easyui-1.4.5/themes/default/easyui.css">   
+<link rel="stylesheet" type="text/css" href="${scarecrow}/jquery-easyui-1.4.5/themes/icon.css">   
+
+<script type="text/javascript" src="${scarecrow}/jquery-easyui-1.4.5/jquery.min.js"></script>   
+<script type="text/javascript" src="${scarecrow}/jquery-easyui-1.4.5/jquery.easyui.min.js"></script>  
+<script type="text/javascript" src="${scarecrow}/jquery-easyui-1.4.5/locale/easyui-lang-zh_CN.js"></script>
+
+<!-- 定义自己的js库，用于常用函数的定义 -->
+<script language="javascript">
+	function formatTime(milliseconds) {
+	    if (milliseconds != "" && milliseconds != null
+	            && milliseconds != "null") {
+	        var datetime = new Date();
+	        datetime.setTime(milliseconds);
+	        var year = datetime.getFullYear();
+	        var month = datetime.getMonth() + 1 < 10 ? "0"
+	                + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+	        var date = datetime.getDate() < 10 ? "0" + datetime.getDate()
+	                : datetime.getDate();
+	        var hour = datetime.getHours() < 10 ? "0" + datetime.getHours()
+	                : datetime.getHours();
+	        var minute = datetime.getMinutes() < 10 ? "0"
+	                + datetime.getMinutes() : datetime.getMinutes();
+	        var second = datetime.getSeconds() < 10 ? "0"
+	                + datetime.getSeconds() : datetime.getSeconds();
+	        return year + "-" + month + "-" + date + " " + hour + ":" + minute
+	                + ":" + second;
+	    } else {
+	        return "";
+	    }
+	}
+</script>
+
+

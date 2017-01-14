@@ -1,0 +1,6 @@
+.post{height:32px;line-height:31px;color:white;text-indent:12px;letter-spacing:2px;background:url(../../image/reg_title_bg.jpg);}
+.post_container{width:1022px;min-height:800px;margin:0px auto;border:1px solid #cde6c7;background-color: #FCFEFD;}
+.post_container ul{margin-top:20px;}
+.post_container ul li{margin:20px 0 0 100px;}
+.post_container ul li textarea{margin-top:5px;vertical-align:middle;line-height:25px;}
+.post_container ul li input[type="submit"]{width:80px;float:right; margin-right:200px;}

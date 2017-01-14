@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    	<class name="com.scarecrow.bean.Notice" table="notice">
+    		<id name="id" column="notice_id" type="integer" >
+    			<generator class="native"/>	
+    		</id>
+    		<property name="noticeContent" 	column="notice_content" 	type="string"/>
+    		<property name="noticeDate" 	column="notice_date" 	type="long"/>
+    		<many-to-one name="admin" class="com.scarecrow.bean.Admin" lazy="false"
+    		column="admin_id" />
+    	</class>
+    	
+</hibernate-mapping>

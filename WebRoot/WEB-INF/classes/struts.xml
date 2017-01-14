@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.multipart.saveDir" value="/tmp"/>
+	
+	<package name="default"  extends="json-default">
+		
+		<!-- 页面加载时启动indexAction -->
+		<action name="index" class="indexAction">
+			<result type="redirect">index.jsp</result>
+		</action>
+		
+		<!-- 页面跳转的action -->
+		<action name="send_*_*" class="sendAction">
+			<result>/WEB-INF/{1}/{2}.jsp</result>
+		</action>
+		
+		<!-- 验证码action -->
+		<action name="checkImageAction" class="com.scarecrow.action.CheckImgAction"/>
+		
+		<!-- 类别操作的action -->
+		<action name="category_*_*" class="categoryAction" method="{2}">
+			<result>/WEB-INF/{1}/{2}.jsp</result>
+			<result name="index" type="chain">index.action</result>	
+			<result name="regist">/WEB-INF/home/regist.jsp</result>	
+			<result type="json" name="jsonMap">
+				<param name="root">jsonMap</param>
+			</result>
+			<result type="json" name="jsonList">
+				<param name="root">jsonList</param>
+				<param name="excludeProperties">
+					\[\d+\]\.categoryExplain,
+					\[\d+\]\.categoryStatus,
+					\[\d+\]\.createTime,
+					\[\d+\]\.updateTime
+				</param>
+			</result>
+		</action>
+		<!-- 模块状态的action -->
+		<action name="categoryStatus_*_*" class="categoryStatusAction" method="{2}">
+			<result type="json" name="jsonList">
+				<param name="root">jsonList</param>
+			</result>
+		</action>
+		<!-- 用户操作的action -->
+		<action name="user_*_*" class="userAction" method="{2}">
+			<result>/WEB-INF/{1}/{2}.jsp</result>
+			<result name="jsonMap" type="json">
+				<param name="root">jsonMap</param>
+				<!-- 过滤用户密码字段 -->
+				<param name="excludeProperties">
+					rows\[\d+\]\.userPassword,
+				</param>
+			</result>
+			<result type="json" name="jsonList">
+				<param name="root">jsonList</param>
+			</result>
+			<result type="stream" name="stream">
+				<param name="inputStream">inputStream</param>
+			</result>
+			<result name="index" type="redirect">index.jsp</result>
+		</action>
+		
+		<!-- 用户状态的action -->
+		<action name="userStatus_*_*" class="userStatusAction" method="{2}">
+			<result type="json" name="jsonList">
+				<param name="root">jsonList</param>
+			</result>
+		</action>
+		
+		<!-- 帖子操作的action -->
+		<action name="post_*_*" class="postAction" method="{2}">
+			<result >/WEB-INF/{1}/{2}.jsp</result>
+			<result name="jsonMap" type="json">
+				<param name="root">jsonMap</param>
+				<param name="excludeProperties">
+					pList\[\d+\]\.user,
+					pList\[\d+\]\.postContent,
+					pList\[\d+\]\.postImage,
+					pList\[\d+\]\.category\.categoryExplain,
+					pList\[\d+\]\.category\.createTime,
+					pList\[\d+\]\.category\.updateTime,
+					pList\[\d+\]\.category\.categoryStatus
+				</param>
+				<param name="includeProperties">
+					total,
+					pList1\[\d+\]\.id,
+					pList1\[\d+\]\.postTitle,
+					pList1\[\d+\]\.postViews,
+					pList1\[\d+\]\.postContent,
+					pList1\[\d+\]\.postTime,
+					pList1\[\d+\]\.user\.id,
+					pageOne,
+					totalOne,
+					pList\[\d+\]\.id,
+					pList\[\d+\]\.postTitle,
+					pList\[\d+\]\.postViews,
+					pList\[\d+\]\.postTime,
+					pList\[\d+\]\.category\.id,
+					pList\[\d+\]\.category\.categoryName,
+					<!-- 后台白名单 -->
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.postTitle,
+					rows\[\d+\]\.postContent,
+					rows\[\d+\]\.postImage,
+					rows\[\d+\]\.postViews,
+					rows\[\d+\]\.postTime,
+					rows\[\d+\]\.category\.id,
+					rows\[\d+\]\.category\.categoryName,
+					rows\[\d+\]\.user\.id,
+					rows\[\d+\]\.user\.userName
+				</param>
+			</result>
+			<result name="save" type="redirect">index.jsp</result>
+		</action>
+		
+		<!-- 管理员操作的action -->
+		<action name="admin_*_*" class="adminAction" method="{2}">
+			<result name="{2}">/WEB-INF/admin/{2}.jsp</result>
+			<result name="index">/WEB-INF/admin/index.jsp</result>
+			<result type="json" name="jsonList">
+				<param name="root">jsonList</param>
+				<param name="excludeProperties">
+					\[\d+\]\.adminPassword,
+					\[\d+\]\.adminPermission
+				</param>
+			</result>
+		</action>
+		<!-- 公告操作的action -->
+		<action name="notice_*_*" class="noticeAction" method="{2}">
+			<result name="jsonMap" type="json">
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		<action name="answer_*_*" class="answerAction" method="{2}">
+			<result name="jsonMap" type="json">
+				<param name="root">jsonMap</param>
+				<param name="excludeProperties">
+					aList\[\d+\]\.user,
+					aList\[\d+\]\.post\.user\.userPassword
+				</param>
+				<param name="includeProperties">
+					list\[\d+\]\.id,
+					list\[\d+\]\.answerContent,
+					list\[\d+\]\.answerTime,
+					list\[\d+\]\.user\.id,
+					list\[\d+\]\.user\.userName,
+					list\[\d+\]\.user\.userGrade,
+					list\[\d+\]\.user\.userNtegration,
+					totalTwo,
+					pageTwo,
+					aList\[\d+\]\.id,
+					aList\[\d+\]\.answerTime,
+					aList\[\d+\]\.post\.postTitle,
+					aList\[\d+\]\.post\.id,
+					aList\[\d+\]\.post\.user\.id,
+					aList\[\d+\]\.post\.user\.userName,
+					aList\[\d+\]\.post\.category\.categoryName
+				</param>
+			</result>
+		</action>
+	</package>
+</struts>    

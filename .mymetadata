@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="scarecrowBBS"
+  id="myeclipse.1464535625356"
+  context-root="/scarecrowBBS"
+  j2ee-spec="6.0"
+  archive="scarecrowBBS.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

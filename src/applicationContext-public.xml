@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- 开启注解 -->
+	<context:component-scan base-package="com.scarecrow.."/>
+	
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/scarecrow"/>
+		<property name="user" value="root"/>
+		<property name="password" value="root"/>
+	</bean>
+	
+	<!-- 配置sessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+	</bean>
+	
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- 配置通知，哪些方法 需要什么样的事务-->
+	<tx:advice id="advice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="*" propagation="SUPPORTS"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 配置aop -->
+	<aop:config>
+		<!-- 通知+切面表达式才是完整的切入路径 -->
+		<aop:pointcut expression="execution(* com.scarecrow.dao.impl.*.*(..))" id="pointcut"/>
+		<aop:advisor advice-ref="advice" pointcut-ref="pointcut"/>
+	</aop:config>
+	
+	<!-- 配置dao层 -->
+	<bean id="baseDao" class="com.scarecrow.dao.impl.BaseDaoImpl" lazy-init="true">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean id="adminDao" class="com.scarecrow.dao.impl.AdminDaoImpl" parent="baseDao"/>	
+
+	<bean id="userDao" class="com.scarecrow.dao.impl.UserDaoImpl" parent="baseDao"/>	
+
+	<bean id="userStatusDao" class="com.scarecrow.dao.impl.UserStatusDaoImpl" parent="baseDao"/>	
+
+	<bean id="categoryDao" class="com.scarecrow.dao.impl.CategoryDaoImpl" parent="baseDao"/>
+
+	<bean id="noticeDao"  class="com.scarecrow.dao.impl.NoticeDaoImpl"  parent="baseDao"/>
+
+	<bean id="postDao"  class="com.scarecrow.dao.impl.PostDaoImpl"  parent="baseDao"/>
+
+	<bean id="answerDao"  class="com.scarecrow.dao.impl.AnswerDaoImpl"  parent="baseDao"/>
+
+	<bean id="categoryStatusDao"  class="com.scarecrow.dao.impl.CategoryStatusDaoImpl"  parent="baseDao"/>
+	
+	<!-- 配置service层 -->
+	<bean id="baseService" class="com.scarecrow.service.impl.BaseServiceImpl" lazy-init="true">
+		<property name="adminDao" 		ref="adminDao"/>
+		
+		<property name="userDao" 		ref="userDao"/>
+		
+		<property name="userStatusDao"  ref="userStatusDao"/>
+		
+		<property name="categoryDao" 	ref="categoryDao"/>
+		
+		<property name="categoryStatusDao" ref="categoryStatusDao"/>
+		
+		<property name="noticeDao" 		ref="noticeDao"/>
+		
+		<property name="postDao"		ref="postDao"/>
+		
+		<property name="answerDao"		ref="answerDao"/>
+	</bean>
+	<bean id="adminService" class="com.scarecrow.service.impl.AdminServiceImpl" parent="baseService"/>
+		
+	<bean id="userService"  class="com.scarecrow.service.impl.UserServiceImpl"  parent="baseService"/>
+	
+	<bean id="userStatusService"  class="com.scarecrow.service.impl.UserStatusServiceImpl"  parent="baseService"/>		
+	
+	<bean id="categoryService" class="com.scarecrow.service.impl.CategoryServiceImpl" parent="baseService"/>
+	
+	<bean id="categoryStatusService"  class="com.scarecrow.service.impl.CategoryStatusServiceImpl"  parent="baseService"/>		
+	
+	<bean id="noticeService" class="com.scarecrow.service.impl.NoticeServiceImpl" parent="baseService"/>
+	
+	<bean id="postService" class="com.scarecrow.service.impl.PostServiceImpl" parent="baseService"/>
+	
+	<bean id="answerService" class="com.scarecrow.service.impl.AnswerServiceImpl" parent="baseService"/>
+	
+	<bean  id="baseAction" class="com.scarecrow.action.BaseAction" scope="prototype">
+	
+		<property name="adminService" ref="adminService"/>
+		
+		<property name="userService" ref="userService"/>
+		
+		<property name="userStatusService" ref="userStatusService"/>
+		
+		<property name="categoryService" ref="categoryService"/>
+		
+		<property name="categoryStatusService" ref="categoryStatusService"/>
+		
+		<property name="noticeService" ref="noticeService"/>
+		
+		<property name="postService" ref="postService"/>
+		
+		<property name="answerService" ref="answerService"/>
+		
+	</bean>
+	<bean id="adminAction" class="com.scarecrow.action.AdminAction" scope="prototype" parent="baseAction"/>
+	
+	<bean id="answerAction" class="com.scarecrow.action.AnswerAction" scope="prototype" parent="baseAction"/>
+	
+	<bean id="userAction" class="com.scarecrow.action.UserAction" scope="prototype" parent="baseAction"/>
+	
+	<bean id="userStatusAction" class="com.scarecrow.action.UserStatusAction" scope="prototype" parent="baseAction"/>
+	
+	<bean id="categoryAction" class="com.scarecrow.action.CategoryAction" scope="prototype" parent="baseAction"/>
+	
+	<bean id="categoryStatusAction" class="com.scarecrow.action.CategoryStatusAction" scope="prototype" parent="baseAction"/>
+	
+	<bean id="noticeAction" class="com.scarecrow.action.NoticeAction" scope="prototype" parent="baseAction"/>
+	
+	<bean id="indexAction" class="com.scarecrow.action.IndexAction" scope="prototype" parent="baseAction"/>
+	
+	<bean id="postAction" class="com.scarecrow.action.PostAction" scope="prototype" parent="baseAction"/>
+	
+	<bean id="sendAction" class="com.scarecrow.action.SendAction"/>
+</beans>

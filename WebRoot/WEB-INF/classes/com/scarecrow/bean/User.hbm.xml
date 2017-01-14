@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    	<class name="com.scarecrow.bean.User" table="user" >
+    		<id name="id" column="user_id" type="int">
+    			<generator class="native"/>
+    		</id>
+    		<property name="userName" 			column="user_name" 			type="string"/>
+    		<property name="userPassword" 		column="user_password" 		type="string"/>
+    		<property name="userSex" 			column="user_sex" 			type="string"/>
+    		<property name="userPhone"			column="user_phone" 		type="string"/>
+    		<property name="userEmail" 			column="user_email" 		type="string"/>
+    		<property name="userGrade" 			column="user_grade" 		type="int"/>
+    		<property name="userNtegration" 	column="user_ntegration" 	type="int"/>
+    		<property name="userRegistdate" 	column="user_registdate" 	type="long"/>
+    		<property name="lastLoginTime" 	    column="user_lastLoginTime" type="long"/>
+    		<many-to-one name="userStatus" class="com.scarecrow.bean.UserStatus" 
+    			column="status_id" not-null="false"  />
+    	</class>
+</hibernate-mapping>

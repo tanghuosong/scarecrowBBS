@@ -1,0 +1,11 @@
+.category_list{width:1024px;background-color: #FCFEFD;}
+.category_title{height:32px;line-height:31px;color:#FFF;text-indent:12px;letter-spacing:2px;background:url(../../image/reg_title_bg.jpg);}
+#content{min-height: 400px;padding-bottom: 20px;}
+.each_list{width:960px;height:180px;margin:10px auto;border:2px solid #f6f5ec;border-radius:25px;}
+.each_list:HOVER {border-color: #009ad6;width:1000px;}
+.list_title{margin:5px 0px 0px 30px;color:red;}
+.list_content{width:940px;height:120px;line-height: 30px;margin:0 auto;}
+.list_content a:HOVER{color:green;text-decoration: none;}
+pre{white-space:pre-wrap; white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;overflow:hidden;}
+.list_other{float:right;margin:0 30px 5px 0px;font-size:12px;color:#999d9c; }
+.list_other span{margin-right:15px;}

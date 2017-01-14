@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    	<class name="com.scarecrow.bean.Post" table="post" >
+    		<id name="id" column="post_id" type="int">
+    			<generator class="native"/>	
+    		</id>
+    		<property name="postTime" 		column="post_time" 		type="long"/>
+    		<property name="postTitle" 		column="post_title" 	type="string"/>
+    		<property name="postContent" 	column="post_content" 	type="string"/>
+    		<property name="postImage"		column="post_image"		type="string"/>
+    		<property name="postViews" 		column="post_views" 	type="int"/>
+    		<many-to-one name="category" class="com.scarecrow.bean.Category" 
+    			column="category_id" not-null="false" 
+    			cascade="save-update"  />
+    		<many-to-one name="user" class="com.scarecrow.bean.User" 
+    			column="user_id" not-null="false" 
+    			cascade="delete"    />
+    	</class>
+</hibernate-mapping>

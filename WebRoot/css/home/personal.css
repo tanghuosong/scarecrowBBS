@@ -1,0 +1,26 @@
+.personal{height:32px;line-height:31px;color:white;text-indent:12px;letter-spacing:2px;background:url(../../image/reg_title_bg.jpg);}
+#personal_container{width:1024px;min-height: 800px;background:#FCFEFD;border:1px solid #afdfe4;}
+.personal_title{height:32px;line-height: 31px;border-bottom:1px solid #afdfe4;border-top:6px solid #fff;}
+.title_left{margin-left:10px;font-size: 16px;font-weight: 700;color:#a1a3a6;}
+.title_right{float:right;margin-right:20px;}
+.title_right a img{width:25px; height:25px;position: relative; bottom:-4px;left:-4px;}
+#personal_info{height:300px;}
+.info_left{float:left;margin-left:40px;width:300px;height:260px;}
+.head_image{width:180px;height:180px;margin-left:80px;border: 1px solid gray;}
+.info_center{float:left;width:300px;height:260px;margin-left:40px;}
+.center_each{width:240px;height:40px;line-height:36px;}
+.center_each span{padding-right:10px;font-size: 16px;font-weight: 700;color:#a1a3a6;}
+#personal_post{height:300px;}
+#post_list{float:left;width:780px;height:240px;}
+#post_list ul li{display: inline-block;margin-left:20px;margin-top:9px;height:34px;}
+#post_list ul li span{display:block;float:left;}
+.cols1{width:240px;}
+.cols2{width:180px;}
+.cols3{width:80px;}
+.cols4{width:180px;}
+.page_info{width:250px;height:23px;float:right;margin-right:10px;position:relative;bottom: 16px;text-align: right;}
+#error_info{width:1024px;height:700px;border:1px solid #afdfe4;text-align: center;font-size:36px;line-height:600px; }
+#personal_answer{height:300px;}
+#answer_list{float:left;width:780px;height:240px;}
+#answer_list ul li{display: inline-block;margin-left:20px;margin-top:9px;height:34px;}
+#answer_list ul li span{display:block;float:left;}
